@@ -1,0 +1,63 @@
+-- Create table
+create table FAC_OFICINA_REGISTRAL_RUA
+(
+  clave         NUMBER(2) not null,
+  descripcion   VARCHAR2(40) not null
+)
+tablespace DATOS
+  pctfree 5
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table FAC_OFICINA_REGISTRAL_RUA
+  is 'Ciudades donde tienen Oficinas Registrales el RUA';
+-- Add comments to the columns 
+comment on column FAC_OFICINA_REGISTRAL_RUA.clave
+  is 'Código de ciudad de la Oficina Registral.';
+comment on column FAC_OFICINA_REGISTRAL_RUA.descripcion
+  is 'Descripción de la ciudad de la Oficina Registral.';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table FAC_OFICINA_REGISTRAL_RUA
+  add constraint XPKFAC_OFICINA_REGISTRAL_RUA primary key (clave)
+  using index 
+  tablespace INDICES
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select on FAC_OFICINA_REGISTRAL_RUA to ADBI;
+grant select on FAC_OFICINA_REGISTRAL_RUA to OPERADORLISTADOS;
+grant select, insert, update, delete on FAC_OFICINA_REGISTRAL_RUA to OPERADORNET;
+grant select, insert, update, delete on FAC_OFICINA_REGISTRAL_RUA to OPERADORSYS;
+-- Public synonym  
+create or replace public synonym  FAC_OFICINA_REGISTRAL_RUA for FAC_OFICINA_REGISTRAL_RUA;
+
+/
+/
+
+-- Add/modify columns 
+alter table FAC_OFICINA_REGISTRAL_RUA add direccion varchar2(50);
+-- Add comments to the columns 
+comment on column FAC_OFICINA_REGISTRAL_RUA.direccion
+  is 'Dirección de la Oficina Registral.';
+/  
+
+-- Add/modify columns 
+alter table FAC_OFICINA_REGISTRAL_RUA add localidad varchar2(40);
+-- Add comments to the columns 
+comment on column FAC_OFICINA_REGISTRAL_RUA.localidad
+  is 'Localidad de la Oficina Registral.';
+/  
